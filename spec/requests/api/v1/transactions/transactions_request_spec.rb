@@ -22,7 +22,6 @@ describe "Transactions API" do
     invoice = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
     id = create(:transaction, invoice_id: invoice.id).id
 
-
     get "/api/v1/transactions/#{id}"
 
     transaction = JSON.parse(response.body)
@@ -37,7 +36,6 @@ describe "Transactions API" do
     invoice = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
     id = create(:transaction, invoice_id: invoice.id).id
 
-
     get "/api/v1/transactions/find?id=#{id}"
 
     transaction = JSON.parse(response.body)
@@ -51,7 +49,6 @@ describe "Transactions API" do
     merchant = create(:merchant)
     invoice = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
     credit_card_number = create(:transaction, invoice_id: invoice.id).credit_card_number
-
 
     get "/api/v1/transactions/find_all?credit_card_number=#{credit_card_number}"
 
@@ -88,7 +85,5 @@ describe "Transactions API" do
     expect(response).to be_success
     expect(transaction.invoice).to eq(invoice)
   end
-
-
 
 end

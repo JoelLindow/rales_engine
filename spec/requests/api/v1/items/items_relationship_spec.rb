@@ -29,7 +29,5 @@ describe "item relationships" do
     merchant_jason = JSON.parse(response.body)
 
     expect(merchant_jason["name"]).to eq(merchant.name)
-
-
   end
 end

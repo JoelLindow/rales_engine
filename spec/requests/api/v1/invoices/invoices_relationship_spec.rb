@@ -8,7 +8,6 @@ describe "invoices relationships" do
     transactions = create_list(:transaction, 3, invoice_id: invoice.id)
     invoice_id = invoice.id
 
-
     get "/api/v1/invoices/#{invoice_id}/transactions"
 
     expect(response).to be_success
@@ -25,7 +24,6 @@ describe "invoices relationships" do
     item = create(:item, merchant_id: merchant.id)
     invoice_item = create(:invoice_item, item_id: item.id, invoice_id: invoice.id)
     invoice_id = invoice.id
-
 
     get "/api/v1/invoices/#{invoice_id}/invoice_items"
 

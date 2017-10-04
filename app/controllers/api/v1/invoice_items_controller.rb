@@ -1,6 +1,7 @@
 module Api
   module V1
     class InvoiceItemsController < ApplicationController
+
       def index
         render json: InvoiceItem.all
       end
@@ -8,6 +9,7 @@ module Api
       def show
         render json: InvoiceItem.find(params[:id])
       end
+
     end
   end
 end
