@@ -3,10 +3,6 @@ module Api
     module Invoices
       class FindController < ApplicationController
 
-        # def index
-        #   render json: Merchant.where(merchant_params)
-        # end
-
         def show
           render json: Invoice.find_by(invoice_params)
         end

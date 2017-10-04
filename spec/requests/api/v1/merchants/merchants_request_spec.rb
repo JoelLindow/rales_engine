@@ -57,5 +57,5 @@ describe "Merchants API" do
     expect(response).to be_success
     expect(merchant.count).to eq(1)
   end
-
+  
 end
