@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
       resources :merchants, only: [:index, :show]
 
+      namespace :invoices do
+        get '/find', to: "find#show"
+      end
+
+      resources :invoices, only: [:index, :show]
 
 
 
