@@ -74,6 +74,21 @@ describe "Transactions API" do
     expect(response).to be_success
     expect(transaction.count).to eq(1)
   end
-  #
-  #
+
+  it "can return the associated invoice" do
+    customer = create(:customer)
+    merchant = create(:merchant)
+    invoice = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
+    transaction = create(:transaction, invoice_id: invoice.id)
+
+    get "/api/v1/transactions/#{transaction.id}/invoice"
+
+    invoice_json = JSON.parse(response.body)
+
+    expect(response).to be_success
+    expect(transaction.invoice).to eq(invoice)
+  end
+
+
+
 end
