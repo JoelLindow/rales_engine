@@ -14,6 +14,10 @@ module Api
         private
 
         def item_params
+          if params[:unit_price]
+            params[:unit_price] = (params[:unit_price].to_f * 100).round
+          end
+          # binding.pry
           params.permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
         end
       end
