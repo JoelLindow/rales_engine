@@ -3,7 +3,6 @@ module Api
     module Transactions
       class InvoicesController < ApplicationController
         def show
-          # binding.pry
           render json: Transaction.find(params[:id]).invoice
         end
       end
