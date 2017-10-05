@@ -4,4 +4,14 @@ class Item < ApplicationRecord
   has_many :invoices, through: :invoice_items
 
   default_scope {order(:id)}
+
+  def self.most_revenue(quantity_input = nil)
+    unscoped.select("items.*, sum(invoice_items.unit_price * invoice_items.quantity) AS total_revenue")
+    .joins(invoices: [:transactions])
+    .merge(Transaction.successful)
+    .group(:id)
+    .order("total_revenue DESC")
+    .limit(quantity_input)
+
+  end
 end
