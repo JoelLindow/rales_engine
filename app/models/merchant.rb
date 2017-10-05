@@ -23,4 +23,9 @@ class Merchant < ApplicationRecord
     .limit(quantity_input)
   end
 
+  def total_revenue
+    
+
+  end
+
 end
