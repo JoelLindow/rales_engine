@@ -78,10 +78,9 @@ describe "Invoices API" do
 
     get "/api/v1/invoices/find_all?id=#{invoice.id}"
 
-    invoice_item = JSON.parse(response.body)
-
+    invoice_json = JSON.parse(response.body)
     expect(response).to be_success
-    expect(invoice_item.first["quantity"]).to eq(quantity)
+    expect(invoice_json.first["id"]).to eq(invoice.id)
   end
 
 end
