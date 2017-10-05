@@ -80,7 +80,7 @@ describe "Merchant Business Intelligence" do
 
     revenue = JSON.parse(response.body)
 
-    expect(revenue1).to eq(10)
+    expect(revenue1).to eq(12)
   end
 
 
