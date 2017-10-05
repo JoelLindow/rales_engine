@@ -17,7 +17,14 @@ describe "Merchant Business Intelligence" do
     invoice_item3 = create(:invoice_item, invoice_id: invoice3.id, quantity: 3, unit_price: 100)
     transaction3 = create(:transaction, invoice_id: invoice3.id, result: "success")
 
+    get "/api/v1/merchants/most_revenue?quantity=2"
 
+    merchants = JSON.parse(response.body)
+
+    expect(merchants.count).to eq(2)
+    expect(merchants.first["id"]).to eq(merchant3.id)
+    expect(merchants.last["id"]).to eq(merchant2.id)
+  
   end
 
 
