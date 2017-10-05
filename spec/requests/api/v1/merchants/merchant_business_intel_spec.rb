@@ -62,27 +62,25 @@ describe "Merchant Business Intelligence" do
   it "returns the total revenue for that merchant across successful transactions" do
     customer = create(:customer)
     merchant = create(:merchant)
-    item1 = create(:item, merchant_id: merchant.id, unit_price: 100)
-    item2 = create(:item, merchant_id: merchant.id, unit_price: 100)
-    item3 = create(:item, merchant_id: merchant.id, unit_price: 100)
+    item1 = create(:item, merchant_id: merchant.id, unit_price: 200)
 
     invoice1 = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
     invoice_item1 = create(:invoice_item, invoice_id: invoice1.id, quantity: 2, item_id: item1.id)
+    invoice_item2 = create(:invoice_item, invoice_id: invoice1.id, quantity: 1, item_id: item1.id)
+    invoice_item3 = create(:invoice_item, invoice_id: invoice1.id, quantity: 3, item_id: item1.id)
+
     transaction1 = create(:transaction, invoice_id: invoice1.id, result: "success")
-
-    invoice2 = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
-    invoice_item2 = create(:invoice_item, invoice_id: invoice2.id, quantity: 1, item_id: item2.id)
-    transaction2 = create(:transaction, invoice_id: invoice2.id, result: "failed")
-
-    invoice3 = create(:invoice, customer_id: customer.id, merchant_id: merchant.id)
-    invoice_item3 = create(:invoice_item, invoice_id: invoice3.id, quantity: 3, item_id: item3.id)
-    transaction3 = create(:transaction, invoice_id: invoice3.id, result: "success")
+    transaction2 = create(:transaction, invoice_id: invoice1.id, result: "failed")
+    transaction3 = create(:transaction, invoice_id: invoice1.id, result: "success")
+    # binding.pry
 
     get "/api/v1/merchants/#{merchant.id}/revenue"
 
+    revenue1 = merchant.total_revenue
+
     revenue = JSON.parse(response.body)
 
-    expect(revenue).to eq(500) 
+    expect(revenue1).to eq(10)
   end
 
 
