@@ -23,7 +23,7 @@ describe "Customers API" do
     expect(response).to be_success
     expect(customer["id"]).to eq(id)
   end
-  #
+
   it "can find first instance by id" do
     id = create(:customer).id
 
@@ -34,7 +34,7 @@ describe "Customers API" do
     expect(response).to be_success
     expect(customer["id"]).to eq(id)
   end
-  #
+
   it "can find all instances by first name" do
     create_list(:customer, 3)
     first_name = create(:customer).first_name
@@ -47,7 +47,7 @@ describe "Customers API" do
     expect(customers.first["first_name"]).to eq(first_name)
     expect(customers.count).to eq(4)
   end
-  
+
   it "can return a random customer" do
     create_list(:customer, 3)
 
@@ -58,5 +58,5 @@ describe "Customers API" do
     expect(response).to be_success
     expect(customer.count).to eq(1)
   end
-
+  
 end

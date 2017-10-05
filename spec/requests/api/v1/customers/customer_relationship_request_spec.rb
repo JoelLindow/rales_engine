@@ -11,7 +11,6 @@ describe "Customer Relationship enpoints" do
     invoices = JSON.parse(response.body)
 
     expect(invoices.count).to eq(customer.invoices.count)
-
   end
 
   it "returns a collection of associated transactions" do
@@ -25,7 +24,5 @@ describe "Customer Relationship enpoints" do
     transactions = JSON.parse(response.body)
 
     expect(transactions.count).to eq(customer.transactions.count)
-
-
   end
 end
