@@ -27,9 +27,7 @@ describe "Merchant Business Intelligence" do
 
     expect(merchants.count).to eq(2)
     expect(merchants.first["id"]).to eq(merchant3.id)
-    expect(merchants.last["id"]).to eq(merchant2.id)
+    expect(merchants.last["id"]).to eq(merchant1.id)
 
   end
-
-
 end
