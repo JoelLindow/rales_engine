@@ -12,6 +12,14 @@ class Item < ApplicationRecord
     .group(:id)
     .order("total_revenue DESC")
     .limit(quantity_input)
-
   end
+
+  def self.most_items(quantity_input = nil)
+    unscoped.joins(invoices: [:transactions])
+    .merge(Transaction.successful)
+    .group(:id)
+    .order("sum(quantity) DESC")
+    .limit(quantity_input)
+  end
+
 end
