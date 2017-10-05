@@ -8,7 +8,6 @@ describe "Merchant Business Intelligence" do
     item2 = create(:item, merchant_id: merchant2.id, unit_price: 100)
     item3 = create(:item, merchant_id: merchant3.id, unit_price: 100)
 
-
     invoice1 = create(:invoice, customer_id: customer.id, merchant_id: merchant1.id)
     invoice_item1 = create(:invoice_item, invoice_id: invoice1.id, quantity: 2, item_id: item1.id)
     transaction1 = create(:transaction, invoice_id: invoice1.id, result: "success")
