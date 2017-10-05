@@ -3,6 +3,10 @@ module Api
     module Invoices
       class FindController < ApplicationController
 
+        def index
+          render json: Invoice.where(invoice_params)
+        end
+
         def show
           render json: Invoice.find_by(invoice_params)
         end
@@ -10,7 +14,7 @@ module Api
         private
 
         def invoice_params
-          params.permit(:id, :id_customers, :id_merchants, :status, :created_at, :updated_at)
+          params.permit(:id, :customer_id, :merchant_id, :status, :created_at, :updated_at)
         end
 
       end
