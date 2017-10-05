@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       resources :invoice_items, only: [:index, :show]
 
       namespace :customers do
+        get '/:id/favorite_merchant', to: "favorite_merchant#show"
         get '/random', to: "random#show"
         get '/find', to: "find#show"
         get '/find_all', to: "find#index"
