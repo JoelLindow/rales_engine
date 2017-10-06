@@ -11,11 +11,14 @@ module Api
           end
         end
 
-        private
-
-        def merchant_params
-          params.permit(:id, :name, :created_at, :updated_at)
+        def index
+          if params.has_key?(:date)
+            render json: Merchant.revenue(params[:date]), serializer: RevenueSerializer
+          else
+            render json: Merchant.revenue
+          end
         end
+
 
       end
     end
