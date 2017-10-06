@@ -22,6 +22,8 @@ Site built with Ruby on Rails utilizing ActiveRecord on Postgresql.
 
 ### Routes to visit
 
+* [Rales Engine Heroku](https://cryptic-bastion-38393.herokuapp.com/)
+
   * ```/api/v1/merchants/:id/items``` returns a collection of items associated with that merchant
   * ```/api/v1/merchants/:id/invoices``` returns a collection of invoices associated with that merchant from their known orders
   * ```/api/v1/invoices/:id/transactions``` returns a collection of associated transactions
