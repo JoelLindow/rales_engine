@@ -8,7 +8,7 @@ class Merchant < ApplicationRecord
   # default_scope {order(:id)}
 
   def self.most_revenue(quantity)
-    select("merchants.*, sum(invoice_items.unit_price * invoice_items.quantity) AS total_revenue")
+    unscoped.select("merchants.*, sum(invoice_items.unit_price * invoice_items.quantity) AS total_revenue")
     .joins(:transactions, :invoice_items)
     .group(:id)
     .order("total_revenue DESC")
@@ -16,7 +16,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.most_items(quantity_input)
-    joins(invoices: [:transactions, :invoice_items])
+    unscoped.joins(invoices: [:transactions, :invoice_items])
     .merge(Transaction.successful)
     .group(:id)
     .order("sum(quantity) DESC")
@@ -44,6 +44,13 @@ class Merchant < ApplicationRecord
     .group('customers.id')
     .order('count(customers.id) DESC')
     .first
+  end
+
+  def self.revenue(date = nil)
+      unscoped.joins(invoices: [:transactions, :invoice_items])
+      .merge(Transaction.successful)
+      .where(invoices: {created_at: date})
+      .sum('quantity * unit_price')
   end
 
 
