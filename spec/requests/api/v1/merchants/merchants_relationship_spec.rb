@@ -12,7 +12,6 @@ describe "merchant relationships" do
       items = JSON.parse(response.body)
 
       expect(items.count).to eq(3)
-
   end
 
   it "returns merchant invoices" do
@@ -28,7 +27,5 @@ describe "merchant relationships" do
     items = JSON.parse(response.body)
 
     expect(items.count).to eq(3)
-
-
   end
 end
