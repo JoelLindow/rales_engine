@@ -23,8 +23,18 @@ class Merchant < ApplicationRecord
     .limit(quantity_input)
   end
 
-  def total_revenue
-    invoices.joins(:transactions).where("result = 'success'").joins(:invoice_items).sum("invoice_items.quantity * invoice_items.unit_price")
+  def total_revenue(date = nil)
+    if date != nil
+      invoices.joins(:transactions, :invoice_items)
+      .where("result = 'success'")
+      .where(invoices: {created_at: date})
+      .sum("invoice_items.quantity * invoice_items.unit_price")
+    else
+      invoices.joins(:transactions)
+      .where("result = 'success'")
+      .joins(:invoice_items)
+      .sum("invoice_items.quantity * invoice_items.unit_price")
+    end
   end
 
   def favorite_customer
